@@ -37,17 +37,13 @@ services:
 
   prometheus:
     image: prom/prometheus:latest
-    ports:
-      - "9090:9090"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    network_mode: "host"
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
 
   grafana:
     image: grafana/grafana:latest
-    ports:
-      - "3000:3000"
+    network_mode: "host"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on:
