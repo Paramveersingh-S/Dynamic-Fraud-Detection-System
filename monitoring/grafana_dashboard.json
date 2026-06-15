@@ -1,0 +1,35 @@
+{
+  "title": "Fraud Detection System Metrics",
+  "panels": [
+    {
+      "title": "Decision Latency (ms)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "rate(fraud_decision_latency_ms_sum[1m]) / rate(fraud_decision_latency_ms_count[1m])",
+          "legendFormat": "Avg Latency"
+        }
+      ]
+    },
+    {
+      "title": "Fraud Decisions Breakdown",
+      "type": "piechart",
+      "targets": [
+        {
+          "expr": "sum(increase(fraud_decisions_total[5m])) by (decision_type)",
+          "legendFormat": "{{decision_type}}"
+        }
+      ]
+    },
+    {
+      "title": "Feature Store Hit Rate",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "feature_store_hit_rate",
+          "legendFormat": "Hit Rate"
+        }
+      ]
+    }
+  ]
+}
