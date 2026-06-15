@@ -22,9 +22,9 @@ def evaluate_fraud_model(y_true, y_pred_proba, threshold=0.5):
     for k in k_vals:
         k_idx = int(n * k)
         if k_idx > 0:
-            metrics[f'precision@{k}'] = float(np.sum(sorted_y[:k_idx]) / k_idx)
+            metrics[f'precision_at_{k}'] = float(np.sum(sorted_y[:k_idx]) / k_idx)
         else:
-            metrics[f'precision@{k}'] = 0.0
+            metrics[f'precision_at_{k}'] = 0.0
             
     # KS Statistic
     fraud_scores = np.array(y_pred_proba)[np.array(y_true) == 1]

@@ -7,14 +7,14 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from ml.models.ensemble import FraudDetectionEnsemble
 from ml.models.xgboost_model import XGBoostFraudModel
 from ml.models.neural_network import FraudNNTrainer
-from ml.models.isolation_forest import IsolationForestAnomalyDetector
+from ml.models.isolation_forest import FraudIsolationForest
 
 def main():
     print("Loading pre-trained base models...")
     # Mocking base models
     xgb = XGBoostFraudModel()
     nn = FraudNNTrainer(input_dim=95)
-    iforest = IsolationForestAnomalyDetector()
+    iforest = FraudIsolationForest()
     
     print("Initializing ensemble...")
     ensemble = FraudDetectionEnsemble(xgb, nn, iforest)
