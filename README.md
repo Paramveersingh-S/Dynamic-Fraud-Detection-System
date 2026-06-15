@@ -65,6 +65,20 @@ graph TD
 
 ---
 
+## 🖥️ Investigator Dashboard V2.0
+
+We built a beautiful, custom Next.js (React) frontend that connects to our FastAPI backend. It features real-time queue management, Recharts SHAP value visualization, and glassmorphism styling.
+
+<div align="center">
+  <img src="docs/ui_1.png" alt="Investigator Dashboard Home" width="80%"/>
+  <br/><br/>
+  <img src="docs/ui_2.png" alt="Case Queue Detail" width="80%"/>
+  <br/><br/>
+  <img src="docs/ui_3.png" alt="SHAP Explainability View" width="80%"/>
+</div>
+
+---
+
 ## 📈 Model Performance & Interpretability
 
 We ensure maximum transparency and performance. Our meta-learner ensemble dominates single models, and SHAP ensures our black-box models are fully explainable.
