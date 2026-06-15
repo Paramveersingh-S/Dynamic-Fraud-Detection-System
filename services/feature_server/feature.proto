@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+service FeatureServer {
+  rpc GetFeatures (FeatureRequest) returns (FeatureResponse);
+}
+
+message FeatureRequest {
+  string transaction_id = 1;
+  string user_id = 2;
+  string merchant_id = 3;
+  string device_id = 4;
+  double amount = 5;
+  google.protobuf.Timestamp timestamp = 6;
+}
+
+message FeatureResponse {
+  string transaction_id = 1;
+  repeated double features = 2;  // ordered feature vector
+  map<string, double> feature_map = 3;  // named features for debugging
+  float feature_retrieval_latency_ms = 4;
+}
