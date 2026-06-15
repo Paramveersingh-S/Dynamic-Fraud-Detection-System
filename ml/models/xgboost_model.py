@@ -89,6 +89,13 @@ class XGBoostFraudModel:
         self.threshold = best_thresh
         return self.threshold
     
+    def predict_proba(self, X: pd.DataFrame) -> np.ndarray:
+        dmatrix = xgb.DMatrix(X, feature_names=self.feature_names)
+        return self.model.predict(dmatrix)
+        
+    def predict(self, X: pd.DataFrame) -> np.ndarray:
+        return (self.predict_proba(X) >= self.threshold).astype(int)
+    
     def explain(self, X: np.ndarray, transaction_id: str) -> Dict:
         explainer = shap.TreeExplainer(self.model)
         shap_values = explainer.shap_values(X)

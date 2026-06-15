@@ -30,7 +30,7 @@ def main():
     model.calibrate_threshold(X_val, y_val, target_precision=0.9)
     
     print("Evaluating model...")
-    metrics = evaluate_fraud_model(y_val, model.model.predict(X_val))
+    metrics = evaluate_fraud_model(y_val, model.predict_proba(X_val))
     
     logger.log_metrics(metrics)
     logger.log_model(model.model, "xgboost_champion")
