@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="docs/logo.png" alt="Dynamic Fraud Shield Logo" width="400"/>
+
 # 🛡️ Dynamic Real-Time Fraud Detection System
 
 **Enterprise-Grade Machine Learning Architecture for Financial Transactions**
@@ -60,6 +62,17 @@ graph TD
 * **MLOps & Monitoring**: Dual logging with MLflow and W&B. Model and Data drift detection via Evidently (Population Stability Index). Prometheus exporter for real-time latency and score distributions.
 * **Investigator API**: FastAPI backend providing SHAP explanations to human investigators.
 * **CI/CD Blue/Green Deployment**: GitHub actions testing adversarial robustness before promoting models to production via Argo Rollouts.
+
+---
+
+## 📈 Model Performance & Interpretability
+
+We ensure maximum transparency and performance. Our meta-learner ensemble dominates single models, and SHAP ensures our black-box models are fully explainable.
+
+<div align="center">
+  <img src="docs/roc_curve.png" alt="ROC Curve" width="45%"/>
+  <img src="docs/feature_importance.png" alt="Feature Importance" width="45%"/>
+</div>
 
 ---
 
