@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+@theme {
+  --color-neon-blue: #00F0FF;
+  --color-neon-orange: #FF5E00;
+  --color-neon-red: #FF003C;
+  --color-dark-bg: #0A0A0E;
+  --color-panel-bg: rgba(20, 20, 28, 0.7);
+  --color-panel-border: rgba(0, 240, 255, 0.1);
+}
+
+body {
+  background-color: var(--color-dark-bg);
+  color: #e2e8f0;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.04), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(255, 94, 0, 0.04), transparent 25%);
+  min-height: 100vh;
+}
+
+.glass-panel {
+  background: var(--color-panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-panel-border);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+}
+
+.neon-text-blue {
+  color: var(--color-neon-blue);
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.neon-text-orange {
+  color: var(--color-neon-orange);
+  text-shadow: 0 0 10px rgba(255, 94, 0, 0.5);
+}
+
+.neon-button-approve {
+  background: transparent;
+  color: #10B981;
+  border: 1px solid #10B981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+.neon-button-approve:hover {
+  background: rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+}
+
+.neon-button-decline {
+  background: transparent;
+  color: var(--color-neon-red);
+  border: 1px solid var(--color-neon-red);
+  box-shadow: 0 0 10px rgba(255, 0, 60, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+.neon-button-decline:hover {
+  background: rgba(255, 0, 60, 0.1);
+  box-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+}
