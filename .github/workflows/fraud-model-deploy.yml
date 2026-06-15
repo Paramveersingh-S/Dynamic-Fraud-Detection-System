@@ -1,0 +1,48 @@
+name: Fraud Model Deploy Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run data validation tests
+        run: echo "great_expectations check"
+      - name: Run model unit tests
+        run: echo "pytest tests/"
+        
+  build-and-push:
+    needs: validate-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Docker images
+        run: echo "docker build -t fraud-model-server ."
+      - name: Push to ECR
+        run: echo "docker push fraud-model-server"
+
+  deploy-staging:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to staging with Argo Rollouts
+        run: echo "kubectl argo rollouts promote fraud-ensemble"
+      - name: Run shadow mode test
+        run: echo "comparing new model vs old on live traffic"
+
+  deploy-production:
+    needs: deploy-staging
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Blue-green deployment to production
+        run: echo "deploying to production"
