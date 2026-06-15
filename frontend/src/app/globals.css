@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-:root {
 @theme {
   --color-neon-blue: #00F0FF;
   --color-neon-orange: #FF5E00;
