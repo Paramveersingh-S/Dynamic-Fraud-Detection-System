@@ -16,7 +16,7 @@ def simulate_metrics():
         DECISION_LATENCY.observe(latency)
         
         # Simulate fraud score
-        score = random.beta(0.5, 5) # heavily skewed to 0
+        score = random.betavariate(0.5, 5) # heavily skewed to 0
         FRAUD_SCORE.observe(score)
         
         # Simulate decisions
