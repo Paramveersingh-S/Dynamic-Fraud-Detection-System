@@ -10,8 +10,12 @@ export default function Dashboard() {
   const [cases, setCases] = useState<any[]>([]);
 
   useEffect(() => {
-    // In production, these would be env vars
-    const API_URL = "http://localhost:8080/v1";
+    // Dynamically detect Codespace proxy URL to avoid Mixed Content HTTP/HTTPS errors
+    const baseUrl = typeof window !== 'undefined' && window.location.hostname.includes('github.dev')
+      ? window.location.origin.replace("-3001", "-8080")
+      : "http://localhost:8080";
+    
+    const API_URL = `${baseUrl}/v1`;
     
     Promise.all([
       axios.get(`${API_URL}/analytics/summary`),

@@ -15,8 +15,11 @@ export default function CaseDetail() {
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
-    // In production, use env var
-    axios.get(`http://localhost:8080/v1/cases/${params.id}`)
+    const baseUrl = typeof window !== 'undefined' && window.location.hostname.includes('github.dev')
+      ? window.location.origin.replace("-3001", "-8080")
+      : "http://localhost:8080";
+
+    axios.get(`${baseUrl}/v1/cases/${params.id}`)
       .then(res => setCaseData(res.data))
       .catch(err => console.error(err));
   }, [params.id]);
@@ -24,7 +27,11 @@ export default function CaseDetail() {
   const submitDecision = async () => {
     if (!decisionMode) return;
     try {
-      await axios.post(`http://localhost:8080/v1/cases/${params.id}/decision`, {
+      const baseUrl = window.location.hostname.includes('github.dev')
+        ? window.location.origin.replace("-3001", "-8080")
+        : "http://localhost:8080";
+
+      await axios.post(`${baseUrl}/v1/cases/${params.id}/decision`, {
         decision: decisionMode,
         notes: notes
       });
